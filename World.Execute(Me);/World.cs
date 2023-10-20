@@ -26,6 +26,19 @@ namespace World.Execute_Me__
             Console.WriteLine("World Generated with " + things.Count
                 + " souls");
         }
+
+        public void timeTravelForTwo(string yearPos,int year, Thing passenger_1 ,Thing passenger_2)
+        {
+
+        }
+        public void Unite(Thing Partner_1, Thing Partner_2)
+        {
+
+        }
+        public void runExecution()
+        {
+
+        }
         public void Announce(string header, string message)
         {
             Console.WriteLine(header + "\n");

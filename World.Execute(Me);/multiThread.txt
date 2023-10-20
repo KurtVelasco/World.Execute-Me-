@@ -1,0 +1,32 @@
+﻿ public static void main(string[] args)
+        {
+            string mp3FilePath = "executeMe.Mp2";
+            var audioFile = new AudioFileReader(mp3FilePath);
+
+            var songTask = Task.Run(() =>
+            {
+                using (var outputDevice = new WaveOutEvent())
+                {
+                    outputDevice.Init(audioFile);
+                    outputDevice.Play();
+
+                    // Wait until the song finishes playing
+                    while (outputDevice.PlaybackState == PlaybackState.Playing)
+                    {
+                        Thread.Sleep(100);
+                    }
+                }
+            });
+
+            var countdownTask = Task.Run(() =>
+            {
+                var executeME = new worldExecuteScript();
+                executeME.startSongCounter();
+            });
+
+            // Wait for both tasks to complete
+            Task.WaitAll(songTask, countdownTask);
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
